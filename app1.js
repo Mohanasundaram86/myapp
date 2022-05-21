@@ -1,12 +1,16 @@
-var express    = require("express");
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host: 'labrds.csv5ovrnscx1.us-east-1.rds.amazonaws.com',
+const mysql = require('mysql');
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const path = require('path');
+
+const conn = mysql.createConnection({
+  host: 'database-1.csv5ovrnscx1.us-east-1.rds.amazonaws.com',
   user: 'admin', /* MySQL User */
   password: 'Ezhil2020', /* MySQL Password */
   database: 'LabRDS' /* MySQL Database */
 });
-   
+
 conn.connect((err) =>{
   if(err) throw err;
   console.log('Mysql Connected with App...');
@@ -30,22 +34,10 @@ app.get('/api/items/:id',(req, res) => {
   });
 });
    
-
-app.post('/api/items',(req, res) => {
-  let data = {title: req.body.title, body: req.body.body};
-  
-  let sqlQuery = "INSERT INTO items SET ?";
-  
-  let query = conn.query(sqlQuery, data,(err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-   
 function apiResponse(results){
     return JSON.stringify({"status": 200, "error": null, "response": results});
 }
    
-app.listen(3000,() =>{
-  console.log('Server started on port 3000...');
+app.listen(3306,() =>{
+  console.log('Server started on port 3306...');
 });
