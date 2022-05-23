@@ -16,11 +16,11 @@ Database Connection
 --------------------------------------------
 --------------------------------------------*/
 const conn = mysql.createConnection({
-  host: 'labrdsnew.csv5ovrnscx1.us-east-1.rds.amazonaws.com',
+  host: 'database-1.csv5ovrnscx1.us-east-1.rds.amazonaws.com',
   user: 'admin', /* MySQL User */
   port: 3306,
   password: 'Ezhil2020', /* MySQL Password */
-  database: 'labrdsnew', /* MySQL Database */
+  database: 'labrds', /* MySQL Database */
   "connectTimeout": 30000
 });
    
