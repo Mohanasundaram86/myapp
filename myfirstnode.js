@@ -91,20 +91,7 @@ app.put('/api/items/:id',(req, res) => {
   });
 });
    
-/**
- * Delete Item
- *
- * @return response()
- */
-app.delete('/api/items/:id',(req, res) => {
-  let sqlQuery = "DELETE FROM items WHERE id="+req.params.id+"";
-    
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-      res.send(apiResponse(results));
-  });
-});
-  
+ 
 /**
  * API Response
  *
