@@ -17,6 +17,7 @@ Database Connection
 --------------------------------------------*/
 const conn = mysql.createConnection({
   host: 'database-1.csv5ovrnscx1.us-east-1.rds.amazonaws.com',
+  acquireTimeout: 30000, //30 secs
   port: 3306,
   user: 'admin', /* MySQL User */
   password: 'Ezhil2020', /* MySQL Password */
