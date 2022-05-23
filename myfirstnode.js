@@ -20,7 +20,7 @@ const conn = mysql.createConnection({
   user: 'admin', /* MySQL User */
   port: 3306,
   password: 'Ezhil2020', /* MySQL Password */
-  database: 'labrdsnew' /* MySQL Database */
+  database: 'labrdsnew', /* MySQL Database */
   "connectTimeout": 30000
 });
    
@@ -62,6 +62,6 @@ function apiResponse(results){
 Server listening
 --------------------------------------------
 --------------------------------------------*/
-app.listen(3306,() =>{
+app.listen(3000,() =>{
   console.log('Server started on port 3000...');
 });
