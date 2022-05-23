@@ -49,51 +49,6 @@ app.get('/api/items',(req, res) => {
 });
    
 /**
- * Get Single Item
- *
- * @return response()
- */
-app.get('/api/items/:id',(req, res) => {
-  let sqlQuery = "SELECT * FROM items WHERE id=" + req.params.id;
-    
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-   
-/**
- * Create New Item
- *
- * @return response()
- */
-app.post('/api/items',(req, res) => {
-  let data = {title: req.body.title, body: req.body.body};
-  
-  let sqlQuery = "INSERT INTO items SET ?";
-  
-  let query = conn.query(sqlQuery, data,(err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-   
-/**
- * Update Item
- *
- * @return response()
- */
-app.put('/api/items/:id',(req, res) => {
-  let sqlQuery = "UPDATE items SET title='"+req.body.title+"', body='"+req.body.body+"' WHERE id="+req.params.id;
-  
-  let query = conn.query(sqlQuery, (err, results) => {
-    if(err) throw err;
-    res.send(apiResponse(results));
-  });
-});
-   
- 
-/**
  * API Response
  *
  * @return response()
@@ -107,6 +62,6 @@ function apiResponse(results){
 Server listening
 --------------------------------------------
 --------------------------------------------*/
-app.listen(3000,() =>{
+app.listen(3306,() =>{
   console.log('Server started on port 3000...');
 });
