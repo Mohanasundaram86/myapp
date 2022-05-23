@@ -21,6 +21,7 @@ const conn = mysql.createConnection({
   port: 3306,
   password: 'Ezhil2020', /* MySQL Password */
   database: 'labrdsnew' /* MySQL Database */
+  "connectTimeout": 30000
 });
    
 /*------------------------------------------
