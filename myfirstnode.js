@@ -17,11 +17,10 @@ Database Connection
 --------------------------------------------*/
 const conn = mysql.createConnection({
   host: 'database-1.csv5ovrnscx1.us-east-1.rds.amazonaws.com',
-  user: 'admin', /* MySQL User */
   port: 3306,
+  user: 'admin', /* MySQL User */
   password: 'Ezhil2020', /* MySQL Password */
-  database: 'labrds', /* MySQL Database */
-  "connectTimeout": 30000
+  database: 'labrds' /* MySQL Database */
 });
    
 /*------------------------------------------
@@ -48,6 +47,64 @@ app.get('/api/items',(req, res) => {
   });
 });
    
+/**
+ * Get Single Item
+ *
+ * @return response()
+ */
+app.get('/api/items/:id',(req, res) => {
+  let sqlQuery = "SELECT * FROM items WHERE id=" + req.params.id;
+    
+  let query = conn.query(sqlQuery, (err, results) => {
+    if(err) throw err;
+    res.send(apiResponse(results));
+  });
+});
+   
+/**
+ * Create New Item
+ *
+ * @return response()
+ */
+app.post('/api/items',(req, res) => {
+  let data = {title: req.body.title, body: req.body.body};
+  
+  let sqlQuery = "INSERT INTO items SET ?";
+  
+  let query = conn.query(sqlQuery, data,(err, results) => {
+    if(err) throw err;
+    res.send(apiResponse(results));
+  });
+});
+   
+/**
+ * Update Item
+ *
+ * @return response()
+ */
+app.put('/api/items/:id',(req, res) => {
+  let sqlQuery = "UPDATE items SET title='"+req.body.title+"', body='"+req.body.body+"' WHERE id="+req.params.id;
+  
+  let query = conn.query(sqlQuery, (err, results) => {
+    if(err) throw err;
+    res.send(apiResponse(results));
+  });
+});
+   
+/**
+ * Delete Item
+ *
+ * @return response()
+ */
+app.delete('/api/items/:id',(req, res) => {
+  let sqlQuery = "DELETE FROM items WHERE id="+req.params.id+"";
+    
+  let query = conn.query(sqlQuery, (err, results) => {
+    if(err) throw err;
+      res.send(apiResponse(results));
+  });
+});
+  
 /**
  * API Response
  *
